@@ -32,7 +32,6 @@ If you tested this adapter on another device and it worked as should, please add
 | `1.3.6.1.2.1.33.1.2.7.0` | Battery temperature                                           |
 | `1.3.6.1.2.1.33.1.3.1.0` | Count of time the input entered an out-of-tolerance condition |
 | `1.3.6.1.2.1.33.1.3.2.0` | Number of input lines utilized in device                      |
-| `1.3.6.1.2.1.33.1.3.3.0` | Input table entries (check example input line table below)    |
 
 ### Example input line table
 Input index: `1`
