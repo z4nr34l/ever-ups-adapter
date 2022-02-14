@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "ever-ups-adapter": "file:../../"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
