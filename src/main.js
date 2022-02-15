@@ -67,6 +67,18 @@ const _snmpOidDataMapping = {
   '1.3.6.1.2.1.33.1.2.7.0': "battery_temperature",
   '1.3.6.1.2.1.33.1.3.1.0': "oot_count",
   '1.3.6.1.2.1.33.1.3.2.0': "lines_utilized_count",
+  '1.3.6.1.2.1.33.1.4.1.0': "output_source",
+  '1.3.6.1.2.1.33.1.4.2.0': "output_frequency",
+  '1.3.6.1.2.1.33.1.4.3.0': "output_lines_number",
+  '1.3.6.1.2.1.33.1.5.1.0': "bypass_frequency",
+  '1.3.6.1.2.1.33.1.5.2.0': "bypass_lines_number",
+  '1.3.6.1.2.1.33.1.6.1.0': "active_alarms_number",
+  '1.3.6.1.2.1.33.1.7.1.0': "test_name",
+  '1.3.6.1.2.1.33.1.7.2.0': "test_spinlock",
+  '1.3.6.1.2.1.33.1.7.3.0': "test_diag_result",
+  '1.3.6.1.2.1.33.1.7.4.0': "test_diag_detail",
+  '1.3.6.1.2.1.33.1.7.5.0': "test_start_time",
+  '1.3.6.1.2.1.33.1.7.6.0': "test_elapsed_time",
 };
 
 /**
