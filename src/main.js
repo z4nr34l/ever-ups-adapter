@@ -118,6 +118,19 @@ const SnmpAdapter = function({ address, community }) {
 
 }
 
+const parseValue = function(object) {
+  switch(object.type) {
+    case 2:
+      return parseInt(object.value)
+    case 4:
+      return object.value.toString()
+    case 65:
+      return parseInt(object.value)
+    default:
+      return object.value
+  }
+}
+
 SnmpAdapter.createSession = function({ address, community }) {
   this.session = new SnmpAdapter({ address, community})
   return this.session
@@ -142,7 +155,7 @@ SnmpAdapter.prototype.getAllData = function() {
             _data = {
               ..._data,
               [_snmpOidDataMapping[varbinds[i].oid]]: {
-                type: _objectType[varbinds[i].type], value: varbinds[i].value.toString()
+                value: parseValue(varbinds[i])
               }
             }
           }
