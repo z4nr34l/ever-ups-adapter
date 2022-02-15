@@ -142,7 +142,7 @@ SnmpAdapter.prototype.getAllData = function() {
             _data = {
               ..._data,
               [_snmpOidDataMapping[varbinds[i].oid]]: {
-                oid: varbinds[i].oid, name: _snmpOidDataMapping[varbinds[i].oid], type: _objectType[varbinds[i].type], value: varbinds[i].value.toString()
+                type: _objectType[varbinds[i].type], value: varbinds[i].value.toString()
               }
             }
           }
