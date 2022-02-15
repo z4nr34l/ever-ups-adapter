@@ -12,16 +12,40 @@ import logUpdate from "log-update"
 const ts = new Transform({ transform(chunk, enc, cb) { cb(null, chunk) } })
 const logger = new Console({ stdout: ts })
 
+const _status = {
+  1: "other",
+  2: "none",
+  3: "normal",
+  4: "bypass",
+  5: "battery",
+  6: "booster",
+  7: "reducer",
+}
+
 const getTable = (data) => {
   logger.table(data)
   return (ts.read() || '').toString()
 }
 
-setInterval(async () => {
-  const session = new SnmpAdapter({
-    address: "10.0.0.222",
-    community: "public"
-  })
+const session = new SnmpAdapter({
+  address: "10.0.0.222",
+  community: "public"
+})
 
-  await session.getAllData().then(data => logUpdate(getTable(data))).catch(error => logUpdate(error))
-}, 80)
+setInterval(async () => {
+
+  await session.getAllData().then(data => {
+
+    /**
+     * Adding string typed status for better visual check
+     * @type {*&{status: {value: *}}}
+     */
+    data = {
+      ...data,
+      status: { value: _status[data.output_source.value] }
+    }
+
+    logUpdate(getTable(data))
+
+  }).catch(error => logUpdate(error))
+}, 160)
