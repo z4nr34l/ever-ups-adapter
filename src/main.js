@@ -130,7 +130,7 @@ SnmpAdapter.prototype.getSnmpData = function(responseCb) {
 
 SnmpAdapter.prototype.getAllData = function() {
   return new Promise(async (resolve, reject) => {
-    let _data = [];
+    let _data = {};
 
     await this.session.walk(_defaultOid, _maxRepetitions, function(varbinds) {
 
@@ -138,7 +138,14 @@ SnmpAdapter.prototype.getAllData = function() {
         if (snmp.isVarbindError(varbinds[i])) {
           console.error(snmp.varbindError(varbinds[i]));
         } else {
-          _data.push({ oid: varbinds[i].oid, name: _snmpOidDataMapping[varbinds[i].oid], type: _objectType[varbinds[i].type], value: varbinds[i].value.toString() })
+          if(_snmpOidDataMapping[varbinds[i].oid]) {
+            _data = {
+              ..._data,
+              [_snmpOidDataMapping[varbinds[i].oid]]: {
+                oid: varbinds[i].oid, name: _snmpOidDataMapping[varbinds[i].oid], type: _objectType[varbinds[i].type], value: varbinds[i].value.toString()
+              }
+            }
+          }
         }
       }
 
