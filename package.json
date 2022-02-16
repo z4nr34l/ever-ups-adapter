@@ -3,7 +3,8 @@
   "version": "2022.0.1",
   "description": "JavaScript implementation of the Simple Network Management Protocol (SNMP) for EVER UPS Devices",
   "directories": {
-    "examples": "examples"
+    "examples": "examples",
+    "tools": "tools"
   },
   "main": "src/main.js",
   "scripts": {
