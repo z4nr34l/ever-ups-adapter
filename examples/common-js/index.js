@@ -10,6 +10,8 @@ async function Main() {
   const session = adapter.createSession({
     address: "10.0.0.222",
     community: "public"
+  }, {
+    verbose: false
   })
 
   await session.getAllData().then(data => console.table(data)).catch(error => console.error(error))

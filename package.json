@@ -1,6 +1,6 @@
 {
   "name": "ever-ups-adapter",
-  "version": "2022.0.1",
+  "version": "2022.0.2",
   "description": "JavaScript implementation of the Simple Network Management Protocol (SNMP) for EVER UPS Devices",
   "directories": {
     "examples": "examples",

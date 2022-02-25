@@ -10,6 +10,8 @@ async function Main() {
   const session = new SnmpAdapter({
     address: "10.0.0.222",
     community: "public"
+  }, {
+    verbose: true
   })
 
   await session.getAllData().then(data => console.table(data)).catch(error => console.error(error))

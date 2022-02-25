@@ -115,7 +115,10 @@ const _objectType = {
 /**
  * SnmpAdapter class definition
  */
-const SnmpAdapter = function({ address, community }) {
+const SnmpAdapter = function(
+  { address, community },
+  { verbose }
+) {
 
   if(!address) {
     console.error(`Please set SNMP device address`)
@@ -131,11 +134,12 @@ const SnmpAdapter = function({ address, community }) {
   if(!this.oids) {
     this.oids = _oids;
   }
-  if(!this.snmpOidDataMapping) {
-    this.snmpOidDataMapping = _snmpOidDataMapping;
-  }
   if(!this.objectType) {
     this.objectType = _objectType
+  }
+
+  if(!this.verbose) {
+    this.verbose = verbose || false
   }
 
 }
@@ -153,19 +157,15 @@ const parseValue = function(object) {
   }
 }
 
-SnmpAdapter.createSession = function({ address, community }) {
-  this.session = new SnmpAdapter({ address, community})
+SnmpAdapter.createSession = function({ address, community }, { verbose }) {
+  this.session = new SnmpAdapter({ address, community}, { verbose })
   return this.session
 }
-
-SnmpAdapter.prototype.getSnmpData = function(responseCb) {
-  this.session.get(this.oids, responseCb);
-  return this
-}
-
+// /opt/api-covid19/build/libs/covid19-api-0.0.1-SNAPSHOT.jar
 SnmpAdapter.prototype.getAllData = function() {
   return new Promise(async (resolve, reject) => {
     let _data = {};
+    const _verbose = this.verbose;
 
     await this.session.walk(_defaultOid, _maxRepetitions, function(varbinds) {
 
@@ -173,11 +173,22 @@ SnmpAdapter.prototype.getAllData = function() {
         if (snmp.isVarbindError(varbinds[i])) {
           console.error(snmp.varbindError(varbinds[i]));
         } else {
-          if(_snmpOidDataMapping[varbinds[i].oid]) {
-            _data = {
-              ..._data,
-              [_snmpOidDataMapping[varbinds[i].oid]]: {
-                value: parseValue(varbinds[i])
+          if (_verbose) {
+            if(_snmpOidDataMapping[varbinds[i].oid]) {
+              _data = {
+                ..._data,
+                [_snmpOidDataMapping[varbinds[i].oid]]: {
+                  value: parseValue(varbinds[i])
+                }
+              }
+            }
+          } else {
+            if(varbinds[i].oid) {
+              _data = {
+                ..._data,
+                [varbinds[i].oid]: {
+                  value: parseValue(varbinds[i])
+                }
               }
             }
           }
