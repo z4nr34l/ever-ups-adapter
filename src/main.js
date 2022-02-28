@@ -126,6 +126,7 @@ const SnmpAdapter = function(
   }
   if(!community) {
     console.log(`Community name is not set, setting to default ("public")`)
+    community = false
   }
 
   if(!this.session) {

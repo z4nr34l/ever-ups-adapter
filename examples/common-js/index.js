@@ -8,8 +8,7 @@ const adapter = require('ever-ups-adapter')
 
 async function Main() {
   const session = adapter.createSession({
-    address: "10.0.0.222",
-    community: "public"
+    address: "10.0.0.222"
   }, {
     verbose: false
   })
