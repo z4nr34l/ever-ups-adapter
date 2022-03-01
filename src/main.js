@@ -8,7 +8,7 @@
 /**
  * Dependencies
  */
-const snmp = require('net-snmp')
+const snmp = require('net-snmp-modified')
 
 /**
  * Default OID for SNMP walk
