@@ -19,7 +19,7 @@ const getTable = (data) => {
 }
 
 const session = new SnmpAdapter({
-  address: "10.0.0.222"
+  address: "<YOUR_DEVICE_IP_ADDRESS>"
 }, {
   verbose: true
 })
