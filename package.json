@@ -1,6 +1,6 @@
 {
   "name": "ever-ups-adapter",
-  "version": "2022.0.5",
+  "version": "2022.0.6",
   "description": "JavaScript implementation of the Simple Network Management Protocol (SNMP) for EVER UPS Devices",
   "directories": {
     "examples": "examples",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git://github.com/Z4NR34L-Software/ever-ups-adapter.git"
   },
-  "homepage": "https://docs.zanreal.pl/",
+  "homepage": "https://www.zanreal.pl/docs",
   "author": "Mateusz \"Z4NR34L\" Janota <software@zanreal.pl> (https://www.zanreal.pl/)",
   "license": "MIT",
   "dependencies": {
